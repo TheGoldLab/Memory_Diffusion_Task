@@ -19,12 +19,12 @@
     % setsize*response condition, (potentially using for error bars)
 
 tic
-wantToReprocess=0;
+wantToReprocess=1;
 if wantToReprocess
-cd '/Users/KAS/Documents/MATLAB/MGSData';
+cd '/Users/KAS/Documents/MATLAB/MGSData/AllCompData';
 SubjectsToParse=dir('*Sub*');
 subjects={SubjectsToParse.name};
-MakeComboMDTONline
+%MakeComboMDTONline
 colors={'m','r','c','b'};
 
 %Columns
@@ -51,14 +51,14 @@ totalFitParamErrs=[];
 totalforgEq=[];
 for i=1:length(subjects)
     plotty=0;
-    load(fullfile( subjects{i}, [subjects{i},'_compiled']))
+    load(fullfile( subjects{i}))
     fullfile( subjects{i}, [subjects{i},'_compiled'])
     [totalFitParam, totalFitParamErrs, totalVarHolder,totalnumTrials,totalMnHolder,totalAbErrHolder, totalResp,BiasHolder,WhichSet]=MDTAnalysis(compiled, i, totalVarHolder,totalnumTrials,totalMnHolder,totalAbErrHolder,totalResp,BiasHolder,WhichSet,totalFitParam, totalFitParamErrs);
     
     
 end
 else
-    load('ProcessedData.mat')
+   % load('ProcessedData.mat')
 end
 toc
 %% The colors using: Purple=set size 1, Turquoise=Set size 2, Green=Set size 5
